@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'login.dart';
+
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -39,9 +41,6 @@ class _SignUpState extends State<SignUp> {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundImage: NetworkImage(
-                          'https://logodix.com/logo/2010395.png',
-                        ),
                       ),
                       Positioned(
                         bottom: 0,
@@ -161,7 +160,14 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Login(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'Already have an account?',
                       style: TextStyle(color: Colors.blue),
