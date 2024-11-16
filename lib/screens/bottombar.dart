@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/screens/widgets/post.dart';
+import 'home.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -10,12 +12,8 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int selected = 0;
   final List<Widget> pageList = [
-    Container(
-      color: Colors.red,
-    ),
-    Container(
-      color: Colors.green,
-    ),
+    const Home(),
+    const PostWidget(),
     Container(
       color: Colors.blue,
     ),
