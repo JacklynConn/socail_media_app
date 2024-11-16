@@ -65,12 +65,12 @@ class _SignUpState extends State<SignUp> {
                         TextFormField(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter your name';
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
-                            hintText: 'name',
+                            hintText: 'Name',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue),
                               borderRadius: BorderRadius.all(
@@ -88,13 +88,13 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(height: h * 0.03),
                         TextFormField(
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                            if (value!.isEmpty || !value.contains('@')) {
+                              return 'Please enter a valid email';
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
-                            hintText: 'email',
+                            hintText: 'Email',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue),
                               borderRadius:
@@ -110,13 +110,13 @@ class _SignUpState extends State<SignUp> {
                         SizedBox(height: h * 0.03),
                         TextFormField(
                           validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
+                            if (value!.isEmpty || value.length < 7) {
+                              return 'Password must be at least 7 characters long';
                             }
                             return null;
                           },
                           decoration: const InputDecoration(
-                            hintText: 'password',
+                            hintText: 'Password',
                             suffixIcon: Icon(Icons.visibility),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blue),
@@ -139,6 +139,7 @@ class _SignUpState extends State<SignUp> {
                     height: h * 0.05,
                     child: ElevatedButton(
                       onPressed: () {
+                        formKey.currentState!.save();
                         if (formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

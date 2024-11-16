@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/screens/sign_up.dart';
+import 'bottombar.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -40,45 +41,41 @@ class _LoginState extends State<Login> {
                     children: [
                       TextFormField(
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                          if (value!.isEmpty || !value.contains('@')) {
+                            return 'Please enter a valid email';
                           }
                           return null;
                         },
                         decoration: const InputDecoration(
-                          hintText: 'email',
+                          hintText: 'Email',
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.blue),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                         ),
                       ),
                       SizedBox(height: h * 0.03),
                       TextFormField(
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                          if (value!.isEmpty || value.length < 7) {
+                            return 'Password must be at least 7 characters long';
                           }
                           return null;
                         },
                         decoration: const InputDecoration(
-                          hintText: 'password',
+                          hintText: 'Password',
                           suffixIcon: Icon(Icons.visibility),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.blue),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                         ),
                       ),
@@ -91,13 +88,20 @@ class _LoginState extends State<Login> {
                   height: h * 0.05,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Processing Data'),
-                          ),
-                        );
-                      }
+                      // formKey.currentState!.save();
+                      // if (formKey.currentState!.validate()) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content: Text('Processing Data'),
+                      //     ),
+                      //   );
+                      // }
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BottomBar(),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
